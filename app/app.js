@@ -15,6 +15,8 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
 import 'sanitize.css/sanitize.css';
+//material-ui 먼저스타일 되고 styled-components 적용되기 위함
+import { StylesProvider } from '@material-ui/core/styles';
 
 // Import root app
 import App from 'containers/App';
@@ -43,7 +45,10 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          {/* material-ui 먼저스타일 되고 styled-components 적용되기 위함 */}
+          <StylesProvider injectFirst>
+            <App />
+          </StylesProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
